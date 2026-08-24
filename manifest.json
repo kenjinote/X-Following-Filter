@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Hide Following Keywords",
+  "version": "1.0",
+  "description": "X.com の /following ページで特定の文字列を含む要素を非表示にします。",
+  "permissions": [],
+  "content_scripts": [
+    {
+      "matches": ["https://x.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
