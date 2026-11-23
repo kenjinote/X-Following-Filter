@@ -1,14 +1,31 @@
 {
   "manifest_version": 3,
   "name": "Hide Following Keywords",
-  "version": "1.0",
-  "description": "X.com の /following ページで特定の文字列を含む要素を非表示にします。",
-  "permissions": [],
+  "version": "1.2",
+  "description": "X.com の /following ページで相互フォロー等をAPI段階で除外し、省メモリで片思いユーザーのみを表示します。",
+  "permissions": [
+    "declarativeNetRequest"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
   "content_scripts": [
     {
-      "matches": ["https://x.com/*"],
+      "matches": ["https://x.com/*", "*://*.twitter.com/*"],
+      "js": ["inject.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://x.com/*", "*://*.twitter.com/*"],
       "js": ["content.js"],
-      "run_at": "document_idle"
+      "run_at": "document_start"
     }
   ]
 }
